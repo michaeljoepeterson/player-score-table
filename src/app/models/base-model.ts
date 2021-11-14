@@ -15,18 +15,27 @@
     }
 
     /**
+     * assign the prop to the value from the data 
+     * @param data 
+     * @param key 
+     */
+    assignProp(data:any,key:string){
+        if(data[key] || data[key] === 0 || typeof data[key] === "boolean"){
+            this[key] = data[key];
+        }
+        else if(key === '_id'){
+            this.id = data._id || data.id;
+        }
+    }
+
+    /**
      * base agnostic data initialization for all app models
      * @param any data 
      */
     init(data:any){
         let keys = Object.keys(this);
         keys.forEach(key => {
-            if(data[key] || data[key] === 0 || typeof data[key] === "boolean"){
-                this[key] = data[key];
-            }
-            else if(key === '_id'){
-                this.id = data._id || data.id;
-            }
+            this.assignProp(data,key)
         });
     }
 
