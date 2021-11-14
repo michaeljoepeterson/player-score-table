@@ -49,3 +49,4 @@ debug.log
 firebase.json
 environment.prod.ts
 .firebaserc
+.firebase
