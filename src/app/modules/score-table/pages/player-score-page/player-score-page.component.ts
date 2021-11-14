@@ -22,6 +22,6 @@ export class PlayerScorePageComponent implements OnInit {
   getPlayerStats(){
     this.playerDataService.getPlayerData().pipe(
       take(1)
-    ).subscribe(res => console.log(res));
+    ).subscribe(res => this.playerStats = [...res]);
   }
 }

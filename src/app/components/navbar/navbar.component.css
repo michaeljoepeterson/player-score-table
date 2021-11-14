@@ -1,7 +1,7 @@
 .fixed-nav{
     position: sticky;
-    /* uncomment for slide to sticky effect
     top: -1px;
+    /* uncomment for slide to sticky effect
     z-index: 10000;
     */
 }

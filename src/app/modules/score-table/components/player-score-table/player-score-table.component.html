@@ -1,1 +1,20 @@
-<p>player-score-table works!</p>
+<div class="table-container">
+    <table>
+        <thead>
+            <tr class="table-row">
+                <ng-container *ngFor="let header of headers">
+                    <th class="sticky-header p-1 pb-2 pt-2">{{header.name}}</th>
+                </ng-container>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let stats of playerStats">
+                <tr
+                class="table-row" 
+                [app-score-row] 
+                [headers]="headers"
+                [stats]="stats"></tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
