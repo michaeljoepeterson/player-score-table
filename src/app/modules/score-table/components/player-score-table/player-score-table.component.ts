@@ -17,4 +17,7 @@ export class PlayerScoreTableComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  handleSort(){
+    console.log('sort')
+  }
 }

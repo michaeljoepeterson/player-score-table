@@ -3,7 +3,9 @@
         <thead>
             <tr class="table-row">
                 <ng-container *ngFor="let header of headers">
-                    <th class="sticky-header p-1 pb-2 pt-2">{{header.name}}</th>
+                    <th 
+                    class="sticky-header p-1 pb-2 pt-2"
+                    (click)="handleSort()">{{header.name}}</th>
                 </ng-container>
             </tr>
         </thead>
