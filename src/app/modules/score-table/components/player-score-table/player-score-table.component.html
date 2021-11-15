@@ -5,7 +5,7 @@
                 <ng-container *ngFor="let header of headers">
                     <th 
                     class="sticky-header p-1 pb-2 pt-2"
-                    (click)="handleSort()">{{header.name}}</th>
+                    (click)="handleSort(header)">{{header.name}}</th>
                 </ng-container>
             </tr>
         </thead>
