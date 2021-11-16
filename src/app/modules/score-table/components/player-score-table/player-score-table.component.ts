@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { PlayerDataSortingService } from '../../../../services/player-data-sorting.service';
 import { PlayerStats } from '../../../../models/player-stats';
 import { defaultPlayerTableData, HeaderData } from '../../models/header-data';
+import { PageChangedEvent } from '../../models/page-changed-event';
 
 @Component({
   selector: 'app-player-score-table',
@@ -21,13 +22,25 @@ export class PlayerScoreTableComponent implements OnInit {
   sortMethodLookup:any = {};
   activeSortProp:string = null;
   sortDescending:boolean = true;
+  /**
+   * the current filtered stats
+   */
+  filteredStats:PlayerStats[] = [];
+
+  /**
+   * the currently displayed player stats
+   */
+  currentPlayerStats:PlayerStats[] = [];
 
   constructor(
-    private playerDataSortingService:PlayerDataSortingService
+    private playerDataSortingService:PlayerDataSortingService,
+    private ref:ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
     this.registerSortMethods();
+    this.setCurrentPlayerStats(this.playerStats);
+    this.handleStatFilter();
   }
 
   /**
@@ -55,8 +68,8 @@ export class PlayerScoreTableComponent implements OnInit {
         return
       }
       this.setActiveSort(targetProp);
-      this.playerStats = method(this.playerStats,targetProp,this.sortDescending);
-      console.log(this.playerStats);
+      this.filteredStats = method(this.filteredStats,targetProp,this.sortDescending);
+      //console.log(this.playerStats);
     }
     catch(e){
       console.error(e);
@@ -75,5 +88,30 @@ export class PlayerScoreTableComponent implements OnInit {
       this.sortDescending = !this.sortDescending;
     }
     this.activeSortProp = sortProp
+  }
+
+  /**
+   * set the current player stats to the provided stats
+   * @param stats 
+   */
+  setCurrentPlayerStats(stats:PlayerStats[]){
+    this.currentPlayerStats = [...stats];
+  }
+
+  /**
+   * todo implement filtering
+   */
+  handleStatFilter(){
+    this.filteredStats = [...this.playerStats];
+  }
+
+  /**
+   * respond to page change events
+   * @param pageChangedEvent 
+   */
+  handlePageChange(pageChangedEvent:PageChangedEvent){
+    let {items} = pageChangedEvent;
+    this.setCurrentPlayerStats(items);
+    this.ref.detectChanges();
   }
 }

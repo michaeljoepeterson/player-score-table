@@ -8,6 +8,10 @@ export class Pager{
     selectedPage:number = 0
 
     constructor(options:any){
+        this.init(options)
+    }
+    
+    init(options:any){
         let {items,resultPerPage} = options;
         this.items = [...items];
         this.resultsPerPage = resultPerPage;

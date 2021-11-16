@@ -31,7 +31,7 @@
             </tr>
         </thead>
         <tbody>
-            <ng-container *ngFor="let stats of playerStats">
+            <ng-container *ngFor="let stats of currentPlayerStats">
                 <tr
                 class="table-row" 
                 [app-score-row] 
@@ -42,5 +42,7 @@
     </table>
 </div>
 <div>
-    <app-page-controls></app-page-controls>
+    <app-page-controls
+    [items]="filteredStats"
+    (pageChanged)="handlePageChange($event)"></app-page-controls>
 </div>
