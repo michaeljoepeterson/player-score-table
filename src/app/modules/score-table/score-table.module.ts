@@ -6,18 +6,21 @@ import { PlayerScoreTableComponent } from './components/player-score-table/playe
 import { PlayerScorePageComponent } from './pages/player-score-page/player-score-page.component';
 import { ScoreRowComponent } from './components/score-row/score-row.component';
 import { MatIconModule } from '@angular/material/icon';
-
+import { PageControlsComponent } from './components/page-controls/page-controls.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
     PlayerScoreTableComponent,
     PlayerScorePageComponent,
-    ScoreRowComponent
+    ScoreRowComponent,
+    PageControlsComponent
   ],
   imports: [
     CommonModule,
     ScoreTableRoutingModule,
-    MatIconModule
+    MatIconModule,
+    MatPaginatorModule
   ]
 })
 export class ScoreTableModule { }
