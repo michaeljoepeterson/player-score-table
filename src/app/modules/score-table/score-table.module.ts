@@ -8,19 +8,26 @@ import { ScoreRowComponent } from './components/score-row/score-row.component';
 import { MatIconModule } from '@angular/material/icon';
 import { PageControlsComponent } from './components/page-controls/page-controls.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { PlayerFilterComponent } from './components/player-filter/player-filter.component';
+import {MatInputModule} from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     PlayerScoreTableComponent,
     PlayerScorePageComponent,
     ScoreRowComponent,
-    PageControlsComponent
+    PageControlsComponent,
+    PlayerFilterComponent
   ],
   imports: [
     CommonModule,
     ScoreTableRoutingModule,
     MatIconModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ScoreTableModule { }

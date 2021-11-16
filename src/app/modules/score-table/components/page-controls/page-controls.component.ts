@@ -40,7 +40,6 @@ export class PageControlsComponent implements OnInit {
    * @param event 
    */
   handlePageEvent(event:PageEvent){
-    console.log(event);
     const {pageIndex,previousPageIndex,pageSize} = event;
     if(previousPageIndex === pageIndex){
       this.updatePageSize(pageSize);

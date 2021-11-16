@@ -46,8 +46,6 @@ export class Pager{
 
             numAdded = 0;
         }
-
-        console.log(this.pagedItems,this.resultsPerPage);
     }
 
     /**

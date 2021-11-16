@@ -13,8 +13,7 @@ import { PlayerStats } from '../models/player-stats';
 export class PlayerDataService {
 
   constructor() { 
-    console.log(PlayerData);
-    console.log(PlayerData[0]);
+
   }
 
   /**
