@@ -40,14 +40,21 @@ export class PlayerScoreTableComponent implements OnInit {
     this.sortMethodLookup.Lng = this.playerDataSortingService.sortByRushingTouchdowns.bind(this.playerDataSortingService);
   }
 
+  /**
+   * method called by click handler
+   * gets the specific sort method for the header and runs that method
+   * and assigns the sorted stats to the components player stats
+   * @param header 
+   * @returns 
+   */
   handleSort(header:HeaderData){
     try{
       const {targetProp} = header;
-      this.setActiveSort(targetProp);
       let method = this.sortMethodLookup[targetProp];
       if(!method){
         return
       }
+      this.setActiveSort(targetProp);
       this.playerStats = method(this.playerStats,targetProp,this.sortDescending);
       console.log(this.playerStats);
     }
@@ -56,6 +63,10 @@ export class PlayerScoreTableComponent implements OnInit {
     }
   }
 
+  /**
+   * set the active sort prop and handle assigning the sort direction bool
+   * @param sortProp 
+   */
   setActiveSort(sortProp:string = null){
     if(sortProp !== this.activeSortProp){
       this.sortDescending = true;

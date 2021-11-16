@@ -5,6 +5,7 @@ import { ScoreTableRoutingModule } from './score-table-routing.module';
 import { PlayerScoreTableComponent } from './components/player-score-table/player-score-table.component';
 import { PlayerScorePageComponent } from './pages/player-score-page/player-score-page.component';
 import { ScoreRowComponent } from './components/score-row/score-row.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ScoreRowComponent } from './components/score-row/score-row.component';
   ],
   imports: [
     CommonModule,
-    ScoreTableRoutingModule
+    ScoreTableRoutingModule,
+    MatIconModule
   ]
 })
 export class ScoreTableModule { }

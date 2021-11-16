@@ -4,8 +4,29 @@
             <tr class="table-row">
                 <ng-container *ngFor="let header of headers">
                     <th 
-                    class="sticky-header p-1 pb-2 pt-2"
-                    (click)="handleSort(header)">{{header.name}}</th>
+                    [ngClass]="{
+                        'sticky-header':true, 
+                        'p-1':true,
+                        'pb-2':true, 
+                        'pt-2':true,
+                        'table-header':true,
+                        'clickable':sortMethodLookup[header.targetProp]
+                    }"
+                    (click)="handleSort(header)">
+                        <div class="d-flex align-items-center">
+                            <span class="table-header">
+                                {{header.name}}
+                            </span>
+                            <span [ngClass]="{
+                                'sort-icon':true,
+                                'hidden':activeSortProp !== header.targetProp,
+                                'sort-descending':sortDescending,
+                                'sort-ascending':!sortDescending
+                            }">
+                                <mat-icon [inline]="false">arrow_drop_down</mat-icon>
+                            </span>
+                        </div>
+                    </th>
                 </ng-container>
             </tr>
         </thead>

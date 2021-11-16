@@ -7,9 +7,33 @@
     border-bottom: 1px solid gray;
 }
 
+.table-header{
+    font-weight: initial;
+}
+
 .sticky-header{
     position: sticky;
     top: 0;
     background-color: white;
     z-index: 1;
+}
+
+.sort-icon{
+    transition: opacity 500ms;
+}
+
+.sort-icon.hidden{
+    opacity: 0;
+}
+
+.sort-descending{
+    transform: rotate(0);
+}
+
+.sort-ascending{
+    transform: rotate(180deg);
+}
+
+.clickable:hover{
+    cursor: pointer;
 }
