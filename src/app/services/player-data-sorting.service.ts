@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { PlayerStats } from '../models/player-stats';
 
+/**
+ * service to handle the various sorting methods
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -46,6 +49,13 @@ export class PlayerDataSortingService {
     return sortedStats;
   }
 
+  /**
+   * sort by the rushing touchdowns stat
+   * @param playerStats 
+   * @param targetProp 
+   * @param sortDescending 
+   * @returns 
+   */
   sortByRushingTouchdowns(playerStats:PlayerStats[],targetProp:string,sortDescending:boolean = true):PlayerStats[]{
     let sortedStats = [...playerStats];
     

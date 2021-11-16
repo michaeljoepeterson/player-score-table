@@ -12,6 +12,9 @@ export class PlayerFilterComponent implements OnInit {
   name:FormControl = new FormControl('');
   nameSub:Subscription;
 
+  /**
+   * output name changes to the parent
+   */
   @Output() nameChanged:EventEmitter<string> = new EventEmitter();
 
   constructor() { }
@@ -19,7 +22,7 @@ export class PlayerFilterComponent implements OnInit {
   ngOnInit(): void {
     this.nameSub = this.name.valueChanges.pipe(
       debounceTime(500)
-    ).subscribe(val => console.log(val));
+    ).subscribe(val => this.handleNameChanged(val));
   }
 
   ngOnDestroy(){
@@ -32,6 +35,6 @@ export class PlayerFilterComponent implements OnInit {
   }
 
   handleNameChanged(value:string){
-    this.nameChanged.emit(value);
+    this.nameChanged.emit(value.toLowerCase());
   }
 }

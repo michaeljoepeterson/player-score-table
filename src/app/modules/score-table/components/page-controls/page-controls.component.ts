@@ -40,8 +40,9 @@ export class PageControlsComponent implements OnInit {
    * @param event 
    */
   handlePageEvent(event:PageEvent){
-    const {pageIndex,previousPageIndex,pageSize} = event;
-    if(previousPageIndex === pageIndex){
+    const {pageIndex,pageSize} = event;
+    
+    if(pageSize !== this.pager.resultsPerPage){
       this.updatePageSize(pageSize);
       this.initPager();
       this.handlePageChanged(pageIndex);

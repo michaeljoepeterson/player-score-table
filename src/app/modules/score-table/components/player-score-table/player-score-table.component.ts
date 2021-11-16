@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { PlayerDataSortingService } from '../../../../services/player-data-sorting.service';
 import { PlayerStats } from '../../../../models/player-stats';
 import { defaultPlayerTableData, HeaderData } from '../../models/header-data';
@@ -22,10 +22,6 @@ export class PlayerScoreTableComponent implements OnInit {
   sortMethodLookup:any = {};
   activeSortProp:string = null;
   sortDescending:boolean = true;
-  /**
-   * the current filtered stats
-   */
-  filteredStats:PlayerStats[] = [];
 
   /**
    * the currently displayed player stats
@@ -40,7 +36,12 @@ export class PlayerScoreTableComponent implements OnInit {
   ngOnInit(): void {
     this.registerSortMethods();
     this.setCurrentPlayerStats(this.playerStats);
-    this.handleStatFilter();
+  }
+
+  ngOnChanges(changes:SimpleChanges){
+    if(changes?.playerStats?.currentValue && !changes?.playerStats?.firstChange){
+
+    }
   }
 
   /**
@@ -68,7 +69,7 @@ export class PlayerScoreTableComponent implements OnInit {
         return
       }
       this.setActiveSort(targetProp);
-      this.filteredStats = method(this.filteredStats,targetProp,this.sortDescending);
+      this.playerStats = method(this.playerStats,targetProp,this.sortDescending);
       //console.log(this.playerStats);
     }
     catch(e){
@@ -96,13 +97,6 @@ export class PlayerScoreTableComponent implements OnInit {
    */
   setCurrentPlayerStats(stats:PlayerStats[]){
     this.currentPlayerStats = [...stats];
-  }
-
-  /**
-   * todo implement filtering
-   */
-  handleStatFilter(){
-    this.filteredStats = [...this.playerStats];
   }
 
   /**
