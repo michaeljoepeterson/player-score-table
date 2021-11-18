@@ -38,12 +38,6 @@ export class PlayerScoreTableComponent implements OnInit {
     this.setCurrentPlayerStats(this.playerStats);
   }
 
-  ngOnChanges(changes:SimpleChanges){
-    if(changes?.playerStats?.currentValue && !changes?.playerStats?.firstChange){
-
-    }
-  }
-
   /**
    * register sort methods in lookup object
    */

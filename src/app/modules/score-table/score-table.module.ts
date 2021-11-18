@@ -11,6 +11,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { PlayerFilterComponent } from './components/player-filter/player-filter.component';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DownloadTableButtonComponent } from './components/download-table-button/download-table-button.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PlayerScorePageComponent,
     ScoreRowComponent,
     PageControlsComponent,
-    PlayerFilterComponent
+    PlayerFilterComponent,
+    DownloadTableButtonComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +31,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatPaginatorModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatTooltipModule
   ]
 })
 export class ScoreTableModule { }

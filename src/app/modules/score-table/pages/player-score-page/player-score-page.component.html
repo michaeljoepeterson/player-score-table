@@ -1,6 +1,11 @@
 <p>player-score-page works!</p>
 <div>
-    <app-player-filter (nameChanged)="handleNameChanged($event)"></app-player-filter>
+    <div>
+        <app-player-filter (nameChanged)="handleNameChanged($event)"></app-player-filter>
+    </div>
+    <div>
+        <app-download-table-button [playerStats]="filteredStats"></app-download-table-button>
+    </div>
 </div>
 <div>
     <app-player-score-table [playerStats]="filteredStats"></app-player-score-table>

@@ -1,0 +1,11 @@
+<button
+mat-icon-button
+matTooltip="Download the current player data"
+(click)="downloadData()">
+    <mat-icon>downloads</mat-icon>
+</button>
+<a
+#downloadLink
+download="player_data.csv"
+>
+</a>
