@@ -3,6 +3,9 @@ import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
+/**
+ * this component renders and hanldes the player filter input
+ */
 @Component({
   selector: 'app-player-filter',
   templateUrl: './player-filter.component.html',
@@ -34,6 +37,10 @@ export class PlayerFilterComponent implements OnInit {
     }
   }
 
+  /**
+   * emit the value from the input field
+   * @param value 
+   */
   handleNameChanged(value:string){
     this.nameChanged.emit(value.toLowerCase());
   }

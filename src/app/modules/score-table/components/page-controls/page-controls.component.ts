@@ -3,6 +3,9 @@ import { PageEvent } from '@angular/material/paginator';
 import { Pager } from '../../../../helpers/pager';
 import { PageChangedEvent } from '../../models/page-changed-event';
 
+/**
+ * this component handles the pager controls for the player stats table
+ */
 @Component({
   selector: 'app-page-controls',
   changeDetection:ChangeDetectionStrategy.OnPush,

@@ -4,6 +4,9 @@ import { PlayerDataService } from '../../../../services/player-data.service';
 import {take} from 'rxjs/operators';
 import { PlayerFilterService } from '../../../../services/player-filter.service';
 
+/**
+ * this component renders all components needed for the player score page
+ */
 @Component({
   selector: 'app-player-score-page',
   templateUrl: './player-score-page.component.html',
@@ -34,8 +37,11 @@ export class PlayerScorePageComponent implements OnInit {
     });
   }
 
+  /**
+   * respond to name changes and filter the table data
+   * @param searchText 
+   */
   handleNameChanged(searchText:string){
     this.filteredStats = this.playerFilterService.filterByPlayerName(this.playerStats,searchText);
-    console.log(this.filteredStats);
   }
 }

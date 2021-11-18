@@ -2,6 +2,9 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { PlayerStats } from 'src/app/models/player-stats';
 import { HeaderData } from '../../models/header-data';
 
+/**
+ * this component renders a single row in the player table
+ */
 @Component({
   selector: '[app-score-row]',
   changeDetection:ChangeDetectionStrategy.OnPush,

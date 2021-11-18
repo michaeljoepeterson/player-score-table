@@ -12,7 +12,7 @@
                         'table-header':true,
                         'clickable':sortMethodLookup[header.targetProp]
                     }"
-                    (click)="handleSort(header)">
+                    (click)="handleSort(header.targetProp)">
                         <div class="d-flex align-items-center">
                             <span class="table-header">
                                 {{header.name}}

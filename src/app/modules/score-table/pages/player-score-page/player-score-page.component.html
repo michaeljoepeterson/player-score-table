@@ -1,4 +1,3 @@
-<p>player-score-page works!</p>
 <div>
     <div>
         <app-player-filter (nameChanged)="handleNameChanged($event)"></app-player-filter>
@@ -8,5 +7,6 @@
     </div>
 </div>
 <div>
-    <app-player-score-table [playerStats]="filteredStats"></app-player-score-table>
+    <app-player-score-table 
+    [playerStats]="filteredStats"></app-player-score-table>
 </div>

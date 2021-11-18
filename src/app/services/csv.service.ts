@@ -11,7 +11,21 @@ import {defaultPlayerTableData} from '../modules/score-table/models/header-data'
 export class CsvService {
   csvContent:string = "data:text/csv;charset=utf-8,";
 
-  constructor() { }
+  constructor(
+    
+  ) { }
+
+  /**
+   * clean number value for use in the csv file
+   * @param value 
+   * @returns 
+   */
+  cleanValue(value:any){
+    if(typeof value === 'string'){
+      value = value.replace(',','');
+    }
+    return value;
+  }
 
   /**
    * build player stats csv from the provided player stats
@@ -28,7 +42,7 @@ export class CsvService {
       let row = [];
       defaultPlayerTableData.forEach(header => {
         try{
-          let stat = stats[header.targetProp];
+          let stat = this.cleanValue(stats[header.targetProp]);
           if(!stat && stat !== 0){
             stat = 'none';
           }

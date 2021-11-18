@@ -1,9 +1,12 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { PlayerDataSortingService } from '../../../../services/player-data-sorting.service';
 import { PlayerStats } from '../../../../models/player-stats';
 import { defaultPlayerTableData, HeaderData } from '../../models/header-data';
 import { PageChangedEvent } from '../../models/page-changed-event';
 
+/**
+ * this component renders the player table and the player paging component
+ */
 @Component({
   selector: 'app-player-score-table',
   changeDetection:ChangeDetectionStrategy.OnPush,
@@ -12,6 +15,8 @@ import { PageChangedEvent } from '../../models/page-changed-event';
 })
 export class PlayerScoreTableComponent implements OnInit {
   @Input() playerStats:PlayerStats[] = [];
+
+  @Output() playersUpdated:EventEmitter<PlayerStats[]> = new EventEmitter();
   headers:HeaderData[] = defaultPlayerTableData;
   /**
    * lookup for getting sort methods for a specific target prop
@@ -38,6 +43,13 @@ export class PlayerScoreTableComponent implements OnInit {
     this.setCurrentPlayerStats(this.playerStats);
   }
 
+  ngOnChanges(changes:SimpleChanges){
+    //run the sort if new player stats are provided if an active sort is selected
+    if(changes?.playerStats?.currentValue && this.activeSortProp){
+      this.runSort(this.activeSortProp);
+    }
+  }
+
   /**
    * register sort methods in lookup object
    */
@@ -49,22 +61,29 @@ export class PlayerScoreTableComponent implements OnInit {
   }
 
   /**
+   * attempt to run a sort method if one exists for the header
+   * @param targetProp 
+   * @returns 
+   */
+  runSort(targetProp:string){
+    let method = this.sortMethodLookup[targetProp];
+    if(!method){
+      return;
+    }
+    this.playerStats = method(this.playerStats,targetProp,this.sortDescending);
+  }
+
+  /**
    * method called by click handler
    * gets the specific sort method for the header and runs that method
    * and assigns the sorted stats to the components player stats
    * @param header 
    * @returns 
    */
-  handleSort(header:HeaderData){
+  handleSort(targetProp:string){
     try{
-      const {targetProp} = header;
-      let method = this.sortMethodLookup[targetProp];
-      if(!method){
-        return
-      }
       this.setActiveSort(targetProp);
-      this.playerStats = method(this.playerStats,targetProp,this.sortDescending);
-      //console.log(this.playerStats);
+      this.runSort(targetProp);
     }
     catch(e){
       console.error(e);

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { PlayerStats } from '../models/player-stats';
 
 /**
@@ -8,9 +9,20 @@ import { PlayerStats } from '../models/player-stats';
   providedIn: 'root'
 })
 export class PlayerDataSortingService {
+  private _currentPlayerStats:Subject<PlayerStats[]> = new Subject();
+  /**
+   * current sorted player stats that will allow components to recieve the 
+   * current sorted stats when the stats are sorted
+   */
+  currentPlayerStats:Observable<PlayerStats[]> = this._currentPlayerStats.asObservable();
 
   constructor() { }
 
+  /**
+   * clean number value for sorting
+   * @param numberVal 
+   * @returns 
+   */
   cleanNumberValue(numberVal:any):number{
     if(typeof numberVal === 'number'){
       return Number(numberVal);
@@ -45,6 +57,8 @@ export class PlayerDataSortingService {
         return 0;
       }
     });
+
+    this.updateSortedStats(sortedStats);
 
     return sortedStats;
   }
@@ -85,6 +99,16 @@ export class PlayerDataSortingService {
       }
     });
 
+    this.updateSortedStats(sortedStats);
+
     return sortedStats;
+  }
+
+  /**
+   * update the current players observable with the current sorted stats
+   * @param playerStats 
+   */
+  updateSortedStats(playerStats:PlayerStats[]){
+    this._currentPlayerStats.next(playerStats);
   }
 }

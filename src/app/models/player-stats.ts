@@ -1,5 +1,8 @@
 import { BaseModel } from "./base-model";
 
+/**
+ * base class to represent the player stats
+ */
 export class PlayerStats extends BaseModel{
     Player:string = null;
     Team:string = null;
